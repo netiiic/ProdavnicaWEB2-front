@@ -28,9 +28,14 @@ const UpdateProfile = async(data) => {
     return apiPut("?id=" + data.id, data);
 }
 
+const Login = async(data) => {
+    return apiPost("/Login", data);
+}
+
 const UserApi = {
     RegisterUser,
     UpdateProfile,
+    Login,
 }
 
 export default UserApi;

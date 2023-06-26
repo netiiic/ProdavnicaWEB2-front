@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import Register from "./pages/Register";
 import reportWebVitals from './reportWebVitals';
+import Dashboard from './pages/Dashboards';
+import Account from './components/Account';
+import Login from './pages/Login';
+import {BrowserRouter, Switch, Route, Routes} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-
-    <Register />
+    <BrowserRouter>
+      <Login/>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
