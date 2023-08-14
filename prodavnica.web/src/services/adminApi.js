@@ -23,8 +23,13 @@ const GetAllUnverified = async() => {
     return api.get("/GetAllUnverified");
 }
 
+const VerifyUser = async(data) => {
+    return api.put("/VerifyUser?username=" + data.username + "&verify=" + data.verify);
+}
+
 const AdminApi = {
     GetAllUnverified,
+    VerifyUser
 }
 
 export default AdminApi;

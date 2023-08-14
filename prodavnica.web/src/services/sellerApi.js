@@ -23,8 +23,23 @@ const AddNewShoppingItem = async(data) => {
     return apiPost("/AddNewItem", data)
 }
 
+const GetAllMyItems = async(data) => {
+    return api.put("/GetAllMyItems?sellerId=" + data);
+}
+
+const DeleteItem = async(data) => {
+    return api.put("/DeleteItem?id=" + data);
+}
+
+const UpdateItem = async(data) => {
+    return api.put("/UpdateItem?id=" + data.id, data)
+}
+
 const SellerApi = {
     AddNewShoppingItem,
+    GetAllMyItems,
+    DeleteItem,
+    UpdateItem,
 }
 
 export default SellerApi;

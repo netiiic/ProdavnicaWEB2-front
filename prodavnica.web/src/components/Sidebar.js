@@ -74,9 +74,6 @@ import {
       .then((res) => setUserType(res.data))
       .catch((error) => console.log(error));
     }
-    //const userType = Api.GetUserType(userId);
-    console.log("HELOOOOOO");
-    console.log(userType);
   
     const getUserList = () => (
       <div style={{ width: 250 }} onClick={() => setOpen(false)}>
@@ -111,13 +108,15 @@ import {
       </div>
     );
 
+    //usertype 0 - user
+    //usertype 1 - seller
+    //usertype 2 - admin
     return (
       <div>
       <div>
-        <Button onClick={() => setOpen(true)} color="primary">Click me</Button>
+        <Button onClick={() => [setOpen(true), getUserType()]} color="primary">Click me</Button>
         <Drawer open={open} anchor={"left"} onClose={() => setOpen(false)}>
-          {getSellerList()}
-          
+          {userType === 0 ? getUserList() : userType === 1 ? getSellerList() : getAdminList()}         
         </Drawer>
 
       </div>
