@@ -7,13 +7,16 @@ import reportWebVitals from './reportWebVitals';
 import Dashboard from './pages/Dashboards';
 import Account from './components/Account';
 import Login from './pages/Login';
-import {BrowserRouter, Switch, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Profile from './pages/Profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Login/>
+      <Routes>
+        <Route exact path="*" Component={Account.isAuthenticated() ? Dashboard : Login}/>  
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );

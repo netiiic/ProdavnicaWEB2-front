@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL
-const ADMIN_PATH = "/admin";
+const SELLER_PATH = "/seller";
 
 const api = axios.create({
-    baseURL: API_URL + ADMIN_PATH,
+    baseURL: API_URL + SELLER_PATH,
 });
 
 const apiPost = async (operation, data) => {
@@ -19,12 +19,12 @@ const apiPut = async (operation, data) => {
     return api.put(operation, data);
 };
 
-const GetAllUnverified = async() => {
-    return api.get("/GetAllUnverified");
+const AddNewShoppingItem = async(data) => {
+    return apiPost("/AddNewItem", data)
 }
 
-const AdminApi = {
-    GetAllUnverified,
+const SellerApi = {
+    AddNewShoppingItem,
 }
 
-export default AdminApi;
+export default SellerApi;

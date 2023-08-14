@@ -28,14 +28,24 @@ const UpdateProfile = async(data) => {
     return apiPut("?id=" + data.id, data);
 }
 
+const GetProfile = async(data) => {
+    return api.put("/GetUser?username=" + data);
+}
+
 const Login = async(data) => {
     return apiPost("/Login", data);
+}
+
+const GetUserType = async(data) => {
+    return apiPut("/GetType?id=" + data);
 }
 
 const UserApi = {
     RegisterUser,
     UpdateProfile,
     Login,
+    GetProfile,
+    GetUserType,
 }
 
 export default UserApi;
