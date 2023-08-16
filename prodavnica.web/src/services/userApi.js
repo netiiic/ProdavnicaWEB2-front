@@ -40,12 +40,17 @@ const GetUserType = async(data) => {
     return apiPut("/GetType?id=" + data);
 }
 
+const OrderHistory = async(data) => {
+    return apiGet("/AllFinalizedPurchaces?userId=" + data);
+}
+
 const UserApi = {
     RegisterUser,
     UpdateProfile,
     Login,
     GetProfile,
     GetUserType,
+    OrderHistory
 }
 
 export default UserApi;

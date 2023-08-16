@@ -4,11 +4,6 @@ import Api from "../services/adminApi";
 import {useState, useEffect} from 'react';
 import {Stack, Button} from "@mui/material";
 
-
-
-
-
-
 export default function GetAllUnverified() {
 
     const columns = [
@@ -60,7 +55,7 @@ export default function GetAllUnverified() {
             .then((response) => setUsers(response.data))
             .catch((error) => console.log(error));
     }, []);
-
+    console.log(users);
     const rows = [
         users
     ];

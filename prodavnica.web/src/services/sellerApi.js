@@ -35,11 +35,16 @@ const UpdateItem = async(data) => {
     return api.put("/UpdateItem?id=" + data.id, data)
 }
 
+const SellerShoppingHistory = async(data) => {
+    return apiGet("/GetMyOrders?sellerId=" + data);
+}
+
 const SellerApi = {
     AddNewShoppingItem,
     GetAllMyItems,
     DeleteItem,
     UpdateItem,
+    SellerShoppingHistory
 }
 
 export default SellerApi;

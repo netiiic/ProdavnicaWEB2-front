@@ -23,7 +23,9 @@ import {
   import Api from "../services/userApi";
   import GetAllUnverified from "../pages/GetAllUnverified";
   import AddShoppingItem from "../pages/AddShoppingItem";
-  
+  import UserShoppingHistory from "../pages/UserShoppingHistory";
+  import SellerShoppingHistory from "../pages/SellerShoppingHistory";
+  import AdminShoppingHistory from "../pages/AdminShoppingHistory";
 
 
   const data = [
@@ -125,6 +127,9 @@ import {
               <Route exact path="/profile" Component={Profile}/>
               <Route exact path="/verifyUser" Component={GetAllUnverified}/>
               <Route exact path="/addItems" Component={AddShoppingItem} />
+              <Route exact path="/shoppingHistory" Component={UserShoppingHistory} />
+              <Route exact path="/sShoppingHistory" Component={SellerShoppingHistory} />
+              <Route exact path="/aShoppingHistory" Component={AdminShoppingHistory} />
             </Routes>
       </div>
       </div>
