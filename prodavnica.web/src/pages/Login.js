@@ -1,58 +1,92 @@
-import { useState } from "react";
-import Api from "../services/userApi";
-import Account from "../components/Account";
-import { Button } from '@mui/material';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Account from '../components/Account';
 
 const Login = () => {
-    const[username, setUsername] = useState("");
-    const[password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-    const SendLoginRequest = async () => {
-        let data = {
-            username,
-            password
-        };
-        try {
-            //const response = await Api.Login(data);
-            const response = await Account.signIn(username, password);
-            console.log(response.data.token);
-            window.location = "/";
-        } catch (error){
-            console.log(error.data);
-        }
-        
-        
-        
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (password === confirmPassword) {
+      let data = {
+        username,
+        password
+    };
+    try {
+        const response = await Account.signIn(username, password);
+        console.log(response.data.token);
+        window.location = "/";
+    } catch (error){
+        console.log(error.response.data);
     }
+      console.log('Login successful');
+    } else {
+      console.log('Passwords do not match');
+    }
+  };
 
-   /* return(
-
-        <div>
-            <label>Username</label>
-            <input type="text" onChange={e=>setUsername(e.target.value)}/>
-            <label>Active</label>
-            <input type="text" onChange={e=>setPassword(e.target.value)}/>
-            <Button varient="contained" color="primary" onClick={SendLoginRequest}>Register</Button>
-        </div>
-    );*/
-
-    return (
-        <Box
-          component="form"
-          sx={{
-            '& > :not(style)': { m: 1, width: '25ch', marginTop: 30, marginLeft: 30},
-          }}
-          noValidate
-          autoComplete="off"
+  return (
+    <Container maxWidth="sm">
+      <Typography variant="h4" component="h1" align="center" gutterBottom>
+        Login Page
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Username"
+          variant="outlined"
+          fullWidth
+          value={username}
+          onChange={handleUsernameChange}
+          margin="normal"
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          value={password}
+          onChange={handlePasswordChange}
+          margin="normal"
+        />
+        <TextField
+          label="Confirm Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
+          margin="normal"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          fullWidth
+          style={{ marginTop: '1rem' }}
         >
-          <TextField id="outlined-basic" label="Username" variant="outlined" onChange={e=>setUsername(e.target.value)}/>
-          <TextField id="outlined-basic" label="Password" variant="outlined" onChange={e=>setPassword(e.target.value)}/>
-          <Button varient="outlined" color="primary" onClick={SendLoginRequest}>Login</Button>
-        </Box>
-      );
-
-}
+          Login
+        </Button>
+      </form>
+    </Container>
+  );
+};
 
 export default Login;

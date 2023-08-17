@@ -44,13 +44,18 @@ const OrderHistory = async(data) => {
     return apiGet("/AllFinalizedPurchaces?userId=" + data);
 }
 
+const GetAllItems = async() => {
+    return api.get("/GetAllItems");
+}
+
 const UserApi = {
     RegisterUser,
     UpdateProfile,
     Login,
     GetProfile,
     GetUserType,
-    OrderHistory
+    OrderHistory,
+    GetAllItems
 }
 
 export default UserApi;

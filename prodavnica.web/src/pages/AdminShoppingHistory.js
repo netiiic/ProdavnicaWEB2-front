@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-import Api from "../services/adminApi";
+import { React, useState, useEffect } from 'react';
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Typography,
-    Collapse,
-    Box,
-  } from '@mui/material';
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Paper,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Api from '../services/adminApi';
 
-const AdminShoppingTable = () => {
-    const [openRows, setOpenRows] = useState([]);
+const AdminShoppingHistory = () => {
     const [history, setHistory] = useState([]);
   
     useEffect(() => {
@@ -22,68 +21,45 @@ const AdminShoppingTable = () => {
         .then((response) => setHistory(response.data))
         .catch((error) => console.log(error));
     }, []);
-  
-    const handleRowClick = (id) => {
-      if (openRows.includes(id)) {
-        setOpenRows(openRows.filter((rowId) => rowId !== id));
-      } else {
-        setOpenRows([...openRows, id]);
-      }
-    };
-  
-    return (
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Buyer ID</TableCell>
-              <TableCell>Byer Full Name</TableCell>
-              <TableCell>Comment</TableCell>
-              <TableCell>Address</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {history.map((row) => (
-              <React.Fragment key={row.id}>
-                <TableRow onClick={() => handleRowClick(row.id)}>
-                  <TableCell>{row.byerId}</TableCell>
-                  <TableCell>{row.byerFullName}</TableCell>
-                  <TableCell>{row.comment}</TableCell>
-                  <TableCell>{row.address}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell colSpan={3}>
-                    <Collapse in={openRows.includes(row.id)}>
-                      <Box p={2}>
-                        <Typography variant="h6">Items:</Typography>
-                        <Table>
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Name</TableCell>
-                              <TableCell>Quantity</TableCell>
-                              <TableCell>Price</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            {row.items.map((item) => (
-                              <TableRow key={item.id}>
-                                <TableCell>{item.name}</TableCell>
-                                <TableCell>{item.quantity}</TableCell>
-                                <TableCell>{item.price}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                      </Box>
-                    </Collapse>
-                  </TableCell>
-                </TableRow>
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
+    
+
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, margin: 2 }}>
+      {history.map((entry) => (
+        <Accordion key={entry.id} sx={{ backgroundColor: '#E0F2F1', color: '#1565C0', borderRadius: '8px' }}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon sx={{ color: '#1565C0' }} />}
+            aria-controls="panel-content"
+          >
+            <Typography variant="h6" sx={{ color: '#1565C0' }}>
+              Byer Full Name: {entry.byerFullName}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Paper elevation={3} sx={{ p: 2, backgroundColor: '#BBDEFB', borderRadius: '8px' }}>
+              <Typography sx={{ color: '#1A237E' }}>Comment: {entry.comment}</Typography>
+              <Typography sx={{ color: '#1A237E' }}>Address: {entry.address}</Typography>
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="subtitle1" sx={{ color: '#1A237E' }}>
+                  Items:
+                </Typography>
+                <List>
+                  {entry.items.map((item) => (
+                    <ListItem key={item.id}>
+                      <ListItemText
+                        primary={`${item.name} - Quantity: ${item.quantity} - Price: ${item.price}`}
+                        sx={{ color: '#1A237E' }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            </Paper>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </Box>
+  );
 };
 
-export default AdminShoppingTable;
+export default AdminShoppingHistory;

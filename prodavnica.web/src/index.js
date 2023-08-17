@@ -15,7 +15,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route exact path="*" Component={Account.isAuthenticated() ? Dashboard : Login}/>  
+        <Route exact path="*" Component={Account.isAuthenticated() ? Dashboard : Login}/>
+        <Route path="/register" Component={Register} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

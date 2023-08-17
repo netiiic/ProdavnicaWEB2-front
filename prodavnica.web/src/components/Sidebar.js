@@ -18,7 +18,7 @@ import {
   import { useEffect, useState } from "react";
   import {Link} from "react-router-dom";
   import Profile from "../pages/Profile";
-  import {BrowserRouter, Switch, Route, Routes} from "react-router-dom";
+  import {Route, Routes} from "react-router-dom";
   import Account from "../components/Account";
   import Api from "../services/userApi";
   import GetAllUnverified from "../pages/GetAllUnverified";
@@ -26,22 +26,7 @@ import {
   import UserShoppingHistory from "../pages/UserShoppingHistory";
   import SellerShoppingHistory from "../pages/SellerShoppingHistory";
   import AdminShoppingHistory from "../pages/AdminShoppingHistory";
-
-
-  const data = [
-    {
-      name: "Home",
-      icon: <HomeOutlined />,
-    },
-    { name: "Profile", icon: <Person2Outlined />, link: "/profile" },
-    { name: "Add items", icon: <AddOutlined />, link: "/addItems" },
-    { name: "Purchase", icon: <AddShoppingCartOutlined />, link: "/purchase" },
-    { name: "Verify user", icon: <VerifiedUserOutlined />, link: "/verifyUser" },
-    { name: "Shopping history", icon: <HistoryOutlined />, link: "/shoppingHistory" },
-    { name: "Outgoing purchase", icon: < LocalShippingOutlined/>, link: "/outgoingPurchase"},
-    { name: "Seller Shopping history", icon: <HistoryOutlined />, link: "/sShoppingHistory" },
-    { name: "Admin Shopping history", icon: <HistoryOutlined />, link: "/aShoppingHistory" },
-  ];
+  import MakePurchase from "../pages/MakePurchase";
 
   const userOptions = [
     { name: "Profile", icon: <Person2Outlined />, link: "/profile" },
@@ -130,6 +115,7 @@ import {
               <Route exact path="/shoppingHistory" Component={UserShoppingHistory} />
               <Route exact path="/sShoppingHistory" Component={SellerShoppingHistory} />
               <Route exact path="/aShoppingHistory" Component={AdminShoppingHistory} />
+              <Route exact path="/purchase" Component={MakePurchase} />
             </Routes>
       </div>
       </div>
