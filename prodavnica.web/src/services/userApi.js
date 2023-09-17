@@ -48,6 +48,10 @@ const GetAllItems = async() => {
     return api.get("/GetAllItems");
 }
 
+const MakePurchase = async(data) => {
+    return api.post("/MakeOrder", data);
+}
+
 const UserApi = {
     RegisterUser,
     UpdateProfile,
@@ -55,7 +59,8 @@ const UserApi = {
     GetProfile,
     GetUserType,
     OrderHistory,
-    GetAllItems
+    GetAllItems,
+    MakePurchase
 }
 
 export default UserApi;
