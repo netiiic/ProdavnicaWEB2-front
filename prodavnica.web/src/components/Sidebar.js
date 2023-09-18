@@ -37,7 +37,6 @@ import {
   const sellerOptions = [
     { name: "Profile", icon: <Person2Outlined />, link: "/profile" },
     { name: "Add items", icon: <AddOutlined />, link: "/addItems" },
-    { name: "Outgoing purchase", icon: < LocalShippingOutlined/>, link: "/outgoingPurchase"},
     { name: "Seller Shopping history", icon: <HistoryOutlined />, link: "/sShoppingHistory" },
   ];
 

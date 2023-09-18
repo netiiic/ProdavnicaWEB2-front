@@ -136,8 +136,8 @@ const Register = () => {
             value={formData.userType}
             onChange={handleChange}
           >
-            <MenuItem value="buyer">Buyer</MenuItem>
-            <MenuItem value="seller">Seller</MenuItem>
+            <MenuItem value="buyer">Kupac</MenuItem>
+            <MenuItem value="seller">Prodavac</MenuItem>
           </Select>
         </FormControl>
         <Button
@@ -151,7 +151,7 @@ const Register = () => {
         </Button>
       </form>
       <Typography variant="body2" align="center" style={{ marginTop: '16px' }}>
-        Already have an account? <RouterLink component={Link} to="/">Login</RouterLink>
+        <RouterLink component={Link} to="/">Back to Login</RouterLink>
       </Typography>
     </Container>
   );

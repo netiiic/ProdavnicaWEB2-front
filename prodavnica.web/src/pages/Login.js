@@ -88,10 +88,10 @@ const Login = () => {
         </Button>
       </form>
       <Typography variant="body2" align="center" style={{ marginTop: '16px' }}>
-        Don't have an account? <RouterLink component={Link} to="/register">Make an account</RouterLink>
+        <RouterLink component={Link} to="/register">Make an account</RouterLink>
       </Typography>
       <Typography variant="body2" align="center" style={{ marginTop: '16px' }}>
-        Register with Google? <RouterLink component={Link} to="/google">GoogleLogin</RouterLink>
+        <RouterLink component={Link} to="/google">Google Register</RouterLink>
       </Typography>
     </Container>
   );

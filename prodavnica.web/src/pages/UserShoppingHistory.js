@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -28,36 +28,36 @@ const UserShoppingHistory = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, margin: 2 }}>
       {history.map((entry) => (
-        <Accordion key={entry.id} sx={{ backgroundColor: '#E0F2F1', color: '#1565C0', borderRadius: '8px' }}>
+        <Accordion key={entry.id} sx={{ backgroundColor: '#D1C4E9', color: '#673AB7', borderRadius: '8px' }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: '#1565C0' }} />}
+            expandIcon={<ExpandMoreIcon sx={{ color: '#673AB7' }} />}
             aria-controls="panel-content"
           >
-            <Typography variant="h6" sx={{ color: '#1565C0' }}>
+            <Typography variant="h6" sx={{ color: '#673AB7' }}>
               Delivered to address: {entry.address}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Paper elevation={3} sx={{ p: 2, backgroundColor: '#BBDEFB', borderRadius: '8px' }}>
-              <Typography sx={{ color: '#1A237E' }}>Buyer ID: {entry.byerId}</Typography>
-              <Typography sx={{ color: '#1A237E' }}>Comment: {entry.comment}</Typography>
-              <Typography sx={{ color: '#1A237E' }}>Address: {entry.address}</Typography>
+            <Paper elevation={3} sx={{ p: 2, backgroundColor: '#B39DDB', borderRadius: '8px' }}>
+              <Typography sx={{ color: '#311B92' }}>Buyer ID: {entry.byerId}</Typography>
+              <Typography sx={{ color: '#311B92' }}>Comment: {entry.comment}</Typography>
+              <Typography sx={{ color: '#311B92' }}>Address: {entry.address}</Typography>
               <Box sx={{ mt: 2 }}>
-                <Typography variant="subtitle1" sx={{ color: '#1A237E' }}>
+                <Typography variant="subtitle1" sx={{ color: '#311B92' }}>
                   Items:
                 </Typography>
                 <List>
                   {entry.items.map((item) => (
                     <ListItem key={item.id}>
                       <ListItemText
-                        primary={`${item.name} - Quantity: ${item.quantity} - Price: ${item.price}`}
-                        sx={{ color: '#1A237E' }}
+                        primary={`${item.name} - Quantity: ${item.quantity} - Price: ${item.price} each`}
+                        sx={{ color: '#311B92' }}
                       />
                     </ListItem>
                   ))}
                 </List>
               </Box>
-              <Typography sx={{ color: '#1A237E' }}>
+              <Typography sx={{ color: '#311B92' }}>
                 Finalized: {entry.finalized ? 'Yes' : 'No'}
               </Typography>
             </Paper>

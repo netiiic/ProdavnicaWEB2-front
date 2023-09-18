@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -17,39 +17,39 @@ import Account from '../components/Account';
 const SellerShoppingHistory = () => {
   const [history, setHistory] = useState([]);
   const jwt = Account.getAccount();
-console.log(jwt);
-useEffect(() => {
-  Api.SellerShoppingHistory(jwt.userId)
-    .then((response) => setHistory(response.data))
-    .catch((error) => console.log(error));
-}, []);
+
+  useEffect(() => {
+    Api.SellerShoppingHistory(jwt.userId)
+      .then((response) => setHistory(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, margin: 2 }}>
       {history.map((entry) => (
-        <Accordion key={entry.id} sx={{ backgroundColor: '#E0F2F1', color: '#1565C0', borderRadius: '8px' }}>
+        <Accordion key={entry.id} sx={{ backgroundColor: '#9c27b0', color: '#fff', borderRadius: '8px' }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: '#1565C0' }} />}
+            expandIcon={<ExpandMoreIcon sx={{ color: '#fff' }} />}
             aria-controls="panel-content"
           >
-            <Typography variant="h6" sx={{ color: '#1565C0' }}>
-              Byer Full Name: {entry.byerFullName}
+            <Typography variant="h6" sx={{ color: '#fff' }}>
+              Buyer Full Name: {entry.byerFullName}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Paper elevation={3} sx={{ p: 2, backgroundColor: '#BBDEFB', borderRadius: '8px' }}>
-              <Typography sx={{ color: '#1A237E' }}>Comment: {entry.comment}</Typography>
-              <Typography sx={{ color: '#1A237E' }}>Address: {entry.address}</Typography>
+            <Paper elevation={3} sx={{ p: 2, backgroundColor: '#7b1fa2', borderRadius: '8px' }}>
+              <Typography sx={{ color: '#fff' }}>Comment: {entry.comment}</Typography>
+              <Typography sx={{ color: '#fff' }}>Address: {entry.address}</Typography>
               <Box sx={{ mt: 2 }}>
-                <Typography variant="subtitle1" sx={{ color: '#1A237E' }}>
+                <Typography variant="subtitle1" sx={{ color: '#fff' }}>
                   Items:
                 </Typography>
                 <List>
                   {entry.items.map((item) => (
                     <ListItem key={item.id}>
                       <ListItemText
-                        primary={`${item.name} - Quantity: ${item.quantity} - Price: ${item.price}`}
-                        sx={{ color: '#1A237E' }}
+                        primary={`${item.name} - Quantity: ${item.quantity} - Price: ${item.price} each`}
+                        sx={{ color: '#fff' }}
                       />
                     </ListItem>
                   ))}
