@@ -21,7 +21,7 @@ const apiPut = async (operation, data) => {
 };
 
 const RegisterUser = async(data) => {
-    return apiPost("", data);
+    return apiPost("/RegisterUser", data);
 }
 
 const UpdateProfile = async(data) => {

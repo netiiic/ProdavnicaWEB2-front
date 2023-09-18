@@ -28,16 +28,13 @@ export default function MakePurchase() {
     }, []);
 
     const addToCart = (item) => {
-      // Check if the item is already in the cart
       const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
   
       if (existingItemIndex !== -1) {
-        // If the item is already in the cart, update its quantity
         const updatedCart = [...cart];
         updatedCart[existingItemIndex].quantity++;
         setCart(updatedCart);
       } else {
-        // If the item is not in the cart, add it with quantity 1
         setCart([...cart, { ...item, quantity: 1, id: uuidv4(), boughtId: item.id, bought: true }]);
       }
     };
@@ -48,7 +45,6 @@ export default function MakePurchase() {
     };
 
     const updateCartItemQuantity = (itemId, newQuantity) => {
-      // Update the quantity of a specific item in the cart
       const updatedCart = cart.map((item) =>
         item.id === itemId ? { ...item, quantity: newQuantity } : item
       );
@@ -57,7 +53,6 @@ export default function MakePurchase() {
     const jwt = Account.getAccount();
 
     const handlePurchase = () => {
-      // Create the purchase request object
       const purchaseRequest = {
         id: uuidv4(),
         byerId: jwt.userId,
@@ -65,20 +60,15 @@ export default function MakePurchase() {
         address,
         items: cart,
         finalized: true,
-        byerFullName: jwt.fullName, // Replace with the actual buyer's name
+        byerFullName: jwt.fullName,
       };
   
-      // Send the purchase request to the backend
       Api.MakePurchase(purchaseRequest)
         .then((response) => {
-          // Handle success, e.g., show a success message
           console.log("Purchase successful");
-          // Clear the cart after a successful purchase
           setCart([]);
-          window.location("/shoppingHistory");
         })
         .catch((error) => {
-          // Handle error, e.g., show an error message
           console.error("Purchase failed", error);
         });
     };
@@ -104,7 +94,7 @@ export default function MakePurchase() {
           },
         }}
         pageSizeOptions={[5, 10]}
-        onRowClick={(params) => addToCart(params.row)} // Add items to cart on row click
+        onRowClick={(params) => addToCart(params.row)}
       />
     </div>
     <TextField
@@ -140,8 +130,8 @@ export default function MakePurchase() {
                     updateCartItemQuantity(item.id, parseInt(e.target.value))
                   }
                   inputProps={{
-                    min: 1, // Ensure quantity is at least 1
-                    max: items.quantity, // Limit quantity to available quantity
+                    min: 1,
+                    max: items.quantity,
                   }}
                 />
                 <ListItemSecondaryAction>

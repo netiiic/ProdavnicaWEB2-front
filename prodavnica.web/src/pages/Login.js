@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Account from '../components/Account';
+import {Link as RouterLink} from '@mui/material';
+import { Link, useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -85,6 +87,9 @@ const Login = () => {
           Login
         </Button>
       </form>
+      <Typography variant="body2" align="center" style={{ marginTop: '16px' }}>
+        Don't have an account? <RouterLink component={Link} to="/register">Make an account</RouterLink>
+      </Typography>
     </Container>
   );
 };
