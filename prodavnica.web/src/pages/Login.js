@@ -8,12 +8,12 @@ import {Link as RouterLink} from '@mui/material';
 import { Link, useHistory } from 'react-router-dom';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -29,11 +29,11 @@ const Login = () => {
 
     if (password === confirmPassword) {
       let data = {
-        username,
+        email,
         password
     };
     try {
-        const response = await Account.signIn(username, password);
+        const response = await Account.signIn(email, password);
         console.log(response.data.token);
         window.location = "/";
     } catch (error){
@@ -52,11 +52,11 @@ const Login = () => {
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
-          label="Username"
+          label="Email"
           variant="outlined"
           fullWidth
-          value={username}
-          onChange={handleUsernameChange}
+          value={email}
+          onChange={handleEmailChange}
           margin="normal"
         />
         <TextField

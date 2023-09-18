@@ -2,8 +2,8 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import Api from "../services/userApi";
 
-const signIn = async(username, password) => {
-    let data = {username, password};
+const signIn = async(email, password) => {
+    let data = {email, password};
     try{
         const response = await Api.Login(data);
         if(response?.data)
