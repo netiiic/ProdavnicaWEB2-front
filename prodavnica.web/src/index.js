@@ -9,6 +9,8 @@ import Account from './components/Account';
 import Login from './pages/Login';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Profile from './pages/Profile';
+import GoogleLogin from './pages/GoogleLogin';
+import { Google } from '@mui/icons-material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +19,7 @@ root.render(
       <Routes>
         <Route exact path="*" Component={Account.isAuthenticated() ? Dashboard : Login}/>
         <Route path="/register" Component={Register} />
+        <Route path="/google" Component={GoogleLogin} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

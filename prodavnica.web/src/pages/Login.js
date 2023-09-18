@@ -90,6 +90,9 @@ const Login = () => {
       <Typography variant="body2" align="center" style={{ marginTop: '16px' }}>
         Don't have an account? <RouterLink component={Link} to="/register">Make an account</RouterLink>
       </Typography>
+      <Typography variant="body2" align="center" style={{ marginTop: '16px' }}>
+        Register with Google? <RouterLink component={Link} to="/google">GoogleLogin</RouterLink>
+      </Typography>
     </Container>
   );
 };
